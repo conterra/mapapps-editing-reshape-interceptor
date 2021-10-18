@@ -25,9 +25,13 @@ export default class ReshapeInterceptor {
         if (event.tool === "reshape") {
             const graphics = event.graphics;
             const centerGraphic = graphics[0];
+
+            if (event.toolEventInfo && event.toolEventInfo.type === "vertex-add") {
+                // catch vertex adding events to avoid errors caused by undefined event.toolEventInfo.mover.geometry.type in "vertex-add" events
+            }
             // If the edge graphic is moving, keep the center graphic
             // at its initial location. Only move edge graphic to resize the buffer.
-            if (event.toolEventInfo && event.toolEventInfo.mover.geometry.type !== "point") {
+            else if (event.toolEventInfo && event.toolEventInfo.mover.geometry.type !== "point") {
                 const toolType = event.toolEventInfo.type;
                 // keep the center graphic at its initial location when edge point is moving
                 if (toolType === "move-start") {
