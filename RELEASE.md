@@ -1,4 +1,4 @@
-✅ Tested for map.apps 4.12.2 / Linie 4
+✅ Tested for map.apps 4.16.0
 
 #### Release Notes
 - SNAPSHOT-Release
