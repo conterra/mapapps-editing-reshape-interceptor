@@ -16,9 +16,10 @@
 export default class ReshapeInterceptor {
 
     interceptEditor(editor) {
-        editor.viewModel.sketchViewModel.on("update", event => {
+        const sketchViewModel = editor.viewModel.sketchViewModel;
+        sketchViewModel.on("update", event => {
             try {
-                this._onMove(event);
+                this._onMove(event, sketchViewModel);
             }
             catch(e){
                 // catch errors to avoid interruptions and freezes caused by undefined attributes
@@ -26,7 +27,7 @@ export default class ReshapeInterceptor {
         });
     }
 
-    _onMove(event) {
+    _onMove(event, sketchViewModel) {
         if (event.tool === "reshape") {
             const graphics = event.graphics;
             const centerGraphic = graphics[0];
@@ -38,10 +39,12 @@ export default class ReshapeInterceptor {
                 // keep the center graphic at its initial location when edge point is moving
                 if (toolType === "move-start") {
                     this.centerGeometryAtStart = centerGraphic.geometry;
+                    this.verticesAtStart = sketchViewModel._internalGraphicsLayer.graphics.clone();
                 }
                 if (toolType === "move" || toolType === "move-stop") {
                     if (this.centerGeometryAtStart) {
                         centerGraphic.geometry = this.centerGeometryAtStart;
+                        sketchViewModel._internalGraphicsLayer.graphics = this.verticesAtStart;
                     }
                 }
             }
