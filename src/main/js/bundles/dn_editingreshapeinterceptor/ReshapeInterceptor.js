@@ -35,7 +35,6 @@ export default class ReshapeInterceptor {
             // If the edge graphic is moving, keep the center graphic
             // at its initial location. Only move edge graphic to resize the buffer.
             if (event.toolEventInfo && event.toolEventInfo.mover.geometry.type !== "point") {
-
                 const toolType = event.toolEventInfo.type;
                 // keep the center graphic at its initial location when edge point is moving
                 if (toolType === "move-start") {
