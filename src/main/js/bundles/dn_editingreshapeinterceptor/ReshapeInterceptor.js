@@ -15,7 +15,7 @@
  */
 export default class ReshapeInterceptor {
     interceptEditor(editor) {
-        editor.viewModel.on("sketch-update", event => {
+        editor.viewModel.on("sketch-update", () => {
             editor.viewModel?.sketchViewModel?.cancel();
         });
     }
