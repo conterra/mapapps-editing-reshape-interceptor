@@ -24,7 +24,15 @@ test('Create Screenshot for GitHub Page', async ({ page }) => {
     await page.goto('http://localhost:9090/');
     const canvas = new MapCanvas(page);
     await canvas.loaded();
-    await canvas.clickOnMap({ x: 400, y: 400 });
+
+    await page.locator('calcite-list-item').filter({ hasText: 'Select' }).locator('svg').click();
+    await page.locator('canvas').click({
+        position: {
+            x: 1167,
+            y: 555
+        }
+    });
+
 
     await expectToMatchScreenshot(page, "screenshot.png", {
         timeout: 10000
