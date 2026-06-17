@@ -5,6 +5,8 @@
 
 The Editing Reshape Interceptor bundle prevents that geometries can be moved while editing.
 
+![Screenshot App](https://github.com/conterra/mapapps-editing-reshape-interceptor/blob/main/screenshot.png)
+
 ## Sample App
 https://demos.conterra.de/mapapps/resources/apps/public_demo_editingreshapeinterceptor/index.html
 
